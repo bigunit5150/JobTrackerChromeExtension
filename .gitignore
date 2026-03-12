@@ -1,0 +1,15 @@
+# Chrome debug profile (created by VSCode launch config)
+.chrome-debug-profile/
+
+# Node
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+
+# Environment
+.env

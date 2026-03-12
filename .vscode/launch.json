@@ -1,0 +1,47 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Chrome: Greenhouse",
+      "type": "chrome",
+      "request": "launch",
+      "runtimeArgs": [
+        "--load-extension=${workspaceFolder}/job-tracker-extension",
+        "--no-first-run",
+        "--no-default-browser-check"
+      ],
+      "userDataDir": "${workspaceFolder}/.chrome-debug-profile",
+      "url": "https://boards.greenhouse.io/everlaw/jobs/4615567006",
+      "webRoot": "${workspaceFolder}/job-tracker-extension",
+      "sourceMaps": true
+    },
+    {
+      "name": "Launch Chrome: LinkedIn",
+      "type": "chrome",
+      "request": "launch",
+      "runtimeArgs": [
+        "--load-extension=${workspaceFolder}/job-tracker-extension",
+        "--no-first-run",
+        "--no-default-browser-check"
+      ],
+      "userDataDir": "${workspaceFolder}/.chrome-debug-profile",
+      "url": "https://www.linkedin.com/jobs/",
+      "webRoot": "${workspaceFolder}/job-tracker-extension",
+      "sourceMaps": true
+    },
+    {
+      "name": "Launch Chrome: Lever",
+      "type": "chrome",
+      "request": "launch",
+      "runtimeArgs": [
+        "--load-extension=${workspaceFolder}/job-tracker-extension",
+        "--no-first-run",
+        "--no-default-browser-check"
+      ],
+      "userDataDir": "${workspaceFolder}/.chrome-debug-profile",
+      "url": "https://jobs.lever.co/",
+      "webRoot": "${workspaceFolder}/job-tracker-extension",
+      "sourceMaps": true
+    }
+  ]
+}

@@ -122,6 +122,36 @@
     #status.visible {
       opacity: 1;
     }
+
+    .test-row {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #testBtn {
+      background: #ffffff;
+      color: #4f46e5;
+      border: 1.5px solid #4f46e5;
+    }
+
+    #testBtn:hover {
+      background: #eef2ff;
+    }
+
+    #testBtn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    #testStatus {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    #testStatus.ok   { color: #16a34a; }
+    #testStatus.err  { color: #dc2626; }
   </style>
 </head>
 <body>
@@ -153,6 +183,11 @@
       <div class="save-row">
         <button id="saveBtn">Save Settings</button>
         <span id="status">Settings saved ✓</span>
+      </div>
+
+      <div class="test-row">
+        <button id="testBtn">Test Notion Connection</button>
+        <span id="testStatus"></span>
       </div>
     </div>
   </main>

@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --test tests/parsers.test.js)",
+      "WebSearch",
+      "WebFetch(domain:developers.notion.com)",
+      "WebFetch(domain:www.notion.com)",
+      "WebFetch(domain:www.notion.so)",
+      "WebFetch(domain:sphere10.com)"
+    ]
+  }
+}

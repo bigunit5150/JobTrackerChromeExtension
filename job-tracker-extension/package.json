@@ -4,6 +4,8 @@
   "description": "Chrome extension to capture job postings to Notion",
   "type": "module",
   "scripts": {
+    "test": "node --test tests/parsers.test.js",
+    "test:watch": "node --test --watch tests/parsers.test.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."

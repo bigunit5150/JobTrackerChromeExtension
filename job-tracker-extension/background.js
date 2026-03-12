@@ -2,6 +2,8 @@ import { parse, isComplete } from './parsers/index.js';
 import claudeFallback from './claude.js';
 import saveToNotion from './notion.js';
 
+console.log('[JobTracker] background.js loaded');
+
 // --- Badge helpers ---
 
 function setBadge(text, color) {
