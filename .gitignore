@@ -11,5 +11,9 @@ Thumbs.db
 # Editor
 .vscode/settings.json
 
-# Environment
+# Environment / secrets
 .env
+notes.md
+
+# Build prompts
+job-tracker-claude-code-prompt.md

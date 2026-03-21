@@ -152,11 +152,27 @@
 
     #testStatus.ok   { color: #16a34a; }
     #testStatus.err  { color: #dc2626; }
+
+    .site-footer {
+      max-width: 520px;
+      margin: 24px auto;
+      padding: 0 16px;
+      text-align: center;
+    }
+
+    .site-footer p {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .site-footer a {
+      color: #6b7280;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Job Tracker Settings</h1>
+    <h1>Job Tracker for Notion &mdash; Settings</h1>
     <p>Configure your Notion integration and optional Claude API key.</p>
   </header>
 
@@ -175,7 +191,7 @@
       <div class="field">
         <label for="claudeApiKey">
           Claude API Key
-          <span class="optional">— Optional, used for fallback parsing</span>
+          <span class="optional">— Optional, enables smarter extraction on unknown job boards</span>
         </label>
         <input type="password" id="claudeApiKey" placeholder="sk-ant-..." autocomplete="off" />
       </div>
@@ -191,6 +207,13 @@
       </div>
     </div>
   </main>
+
+  <footer class="site-footer">
+    <p>
+      If this saves you time during your search, a coffee is appreciated &mdash;
+      <a href="https://buymeacoffee.com/kjsmith5150" target="_blank" rel="noopener">Buy Me a Coffee</a>
+    </p>
+  </footer>
 
   <script src="options.js"></script>
 </body>

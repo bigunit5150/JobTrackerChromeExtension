@@ -4,15 +4,20 @@ import saveToNotion from './notion.js';
 
 console.log('[JobTracker] background.js loaded');
 
-// --- Badge helpers ---
+// --- Icon helpers ---
 
-function setBadge(text, color) {
-  chrome.action.setBadgeText({ text });
-  if (color) chrome.action.setBadgeBackgroundColor({ color });
+function setIcon(state) {
+  chrome.action.setIcon({
+    path: {
+      16:  `icons/icon_${state}_16.png`,
+      48:  `icons/icon_${state}_48.png`,
+      128: `icons/icon_${state}_128.png`
+    }
+  });
 }
 
-function clearBadge() {
-  chrome.action.setBadgeText({ text: '' });
+function resetIcon() {
+  setIcon('idle');
 }
 
 // --- Notification helper ---
@@ -20,7 +25,7 @@ function clearBadge() {
 function notify(title, message) {
   chrome.notifications.create({
     type: 'basic',
-    iconUrl: 'icons/icon48.png',
+    iconUrl: 'icons/icon_idle_128.png',
     title,
     message
   });
@@ -37,7 +42,7 @@ async function captureJob(tab) {
     return;
   }
 
-  setBadge('...', '#888888');
+  setIcon('capturing');
 
   try {
     // Inject and execute content script
@@ -79,29 +84,34 @@ async function captureJob(tab) {
     console.log('[JobTracker] Saved to Notion, page ID:', pageId);
 
     // Success
-    setBadge('✓', '#1a9e3f');
+    setIcon('success');
     notify('Job Tracker', `Saved: ${finalJob.title || 'Job'} at ${finalJob.company || 'Unknown'}`);
-    setTimeout(clearBadge, 3000);
+    setTimeout(resetIcon, 3000);
 
   } catch (err) {
     console.error('[JobTracker] Error:', err);
-    setBadge('✗', '#cc0000');
+    if (err.message?.startsWith('Duplicate:')) {
+      setIcon('duplicate');
+    } else {
+      setIcon('error');
+    }
     notify('Job Tracker', `Error: ${err.message}`);
-    setTimeout(clearBadge, 5000);
+    setTimeout(resetIcon, 5000);
   }
 }
 
 // --- Message listener ---
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'setIcon') {
+    setIcon(message.state);
+  }
   if (message.action === 'capture') {
     chrome.tabs.query({ active: true, currentWindow: true }, ([tab]) => {
       if (tab) {
         captureJob(tab);
       }
     });
-    // Return true to keep the message channel open (not strictly needed here
-    // since we don't sendResponse, but keeps things clean)
     return true;
   }
 });

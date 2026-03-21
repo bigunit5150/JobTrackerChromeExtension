@@ -19,7 +19,7 @@ document.getElementById('saveBtn').addEventListener('click', () => {
   chrome.storage.sync.set(values, () => {
     const status = document.getElementById('status');
     status.classList.add('visible');
-    setTimeout(() => status.classList.remove('visible'), 2500);
+    setTimeout(() => status.classList.remove('visible'), 2000);
   });
 });
 
