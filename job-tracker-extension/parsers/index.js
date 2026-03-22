@@ -2,6 +2,7 @@ import parseGreenhouse from './greenhouse.js';
 import parseLever from './lever.js';
 import parseWorkday from './workday.js';
 import parseLinkedIn from './linkedin.js';
+import parseAshby from './ashby.js';
 import parseGeneric from './generic.js';
 
 function detectATS(url) {
@@ -9,6 +10,7 @@ function detectATS(url) {
   if (url.includes('lever.co')) return 'lever';
   if (url.includes('myworkdayjobs.com') || url.includes('wd1.myworkday')) return 'workday';
   if (url.includes('linkedin.com/jobs')) return 'linkedin';
+  if (url.includes('ashbyhq.com')) return 'ashby';
   return 'generic';
 }
 
@@ -29,6 +31,7 @@ function parse(data) {
     case 'lever':      result = parseLever(data);      break;
     case 'workday':    result = parseWorkday(data);    break;
     case 'linkedin':   result = parseLinkedIn(data);   break;
+    case 'ashby':      result = parseAshby(data);       break;
     default:           result = parseGeneric(data);    break;
   }
 

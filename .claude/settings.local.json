@@ -6,7 +6,8 @@
       "WebFetch(domain:developers.notion.com)",
       "WebFetch(domain:www.notion.com)",
       "WebFetch(domain:www.notion.so)",
-      "WebFetch(domain:sphere10.com)"
+      "WebFetch(domain:sphere10.com)",
+      "Read(//tmp/**)"
     ]
   }
 }

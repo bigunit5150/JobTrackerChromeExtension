@@ -2,50 +2,80 @@ function parseLever({ url, rawText, domData }) {
   let title = '';
   let company = '';
   let location = '';
+  let jobType = null;
+  let salaryRange = null;
   let description = '';
 
-  // Title from page title: "Role · Company" or "Role - Company"
-  if (domData.title) {
-    const parts = domData.title.split(/\s*[·\-|]\s*/);
-    if (parts.length >= 2) {
-      title = parts[0].trim();
-      company = parts[1].trim();
-    } else {
-      title = domData.title.trim();
+  // Primary: JSON-LD structured data
+  const jsonLdMatch = rawText.match(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/i);
+  if (jsonLdMatch) {
+    try {
+      const ld = JSON.parse(jsonLdMatch[1]);
+
+      title = ld.title || '';
+      company = ld.hiringOrganization?.name || '';
+
+      // Location
+      const addr = ld.jobLocation?.address;
+      if (addr?.addressLocality) {
+        location = [addr.addressLocality, addr.addressRegion, addr.addressCountry]
+          .filter(Boolean).join(', ');
+      }
+
+      // Employment type
+      if (ld.employmentType) {
+        const et = ld.employmentType.toLowerCase();
+        if (et.includes('full')) jobType = 'Full-time';
+        else if (et.includes('part')) jobType = 'Part-time';
+        else if (et.includes('contract')) jobType = 'Contract';
+        else if (et.includes('intern')) jobType = 'Internship';
+      }
+
+      // Description — strip HTML tags
+      if (ld.description) {
+        description = ld.description.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+      }
+    } catch {
+      // JSON-LD parse failed, fall through to fallbacks
     }
   }
 
-  // Company from URL: jobs.lever.co/company/...
+  // Fallback: page title format "Company - Job Title"
+  if ((!title || !company) && domData?.title) {
+    const parts = domData.title.split(/\s*-\s*/);
+    if (parts.length >= 2) {
+      if (!company) company = parts[0].trim();
+      if (!title) title = parts.slice(1).join(' - ').trim();
+    }
+  }
+
+  // Fallback: company from URL (jobs.lever.co/company/...)
   if (!company) {
     const urlMatch = url.match(/lever\.co\/([^/]+)/);
     if (urlMatch) company = urlMatch[1].replace(/-/g, ' ');
   }
 
-  // Location from rawText
-  const locationMatch = rawText.match(/(?:Location|Remote|Hybrid)[:\s]+([^\n]+)/i);
-  if (locationMatch) {
-    location = locationMatch[1].trim();
-  } else {
-    // Lever often puts location near top — grab second non-empty line
-    const lines = rawText.split('\n').filter(l => l.trim());
-    if (lines.length >= 3) location = lines[2].trim();
+  // Remote/hybrid detection from raw text
+  const textLower = rawText.toLowerCase();
+  if (!jobType || jobType === 'Full-time') {
+    if (textLower.includes('workplacetypes') && textLower.includes('remote')) {
+      jobType = 'Remote';
+    } else if (textLower.includes('hybrid')) {
+      jobType = 'Hybrid';
+    }
   }
 
-  // Description: text after the first large heading
-  const descMatch = rawText.match(/(?:About the (?:role|position|team)|Job Description|Overview|What you.ll do)[:\s]*\n+([\s\S]+)/i);
-  description = descMatch ? descMatch[1].trim() : rawText;
+  // Salary: look for compensation pattern in raw text
+  if (!salaryRange) {
+    const salaryMatch = rawText.match(/(?:Compensation[^:]*:\s*)?\$[\d,]+[kK]?\s*[-–—]\s*\$?[\d,]+[kK]?(?:\s*(?:per year|\/yr|annually|\/hour|\/hr))?/i);
+    if (salaryMatch) salaryRange = salaryMatch[0].trim();
+  }
 
-  // jobType
-  let jobType = null;
-  const jt = (location + ' ' + rawText).toLowerCase();
-  if (jt.includes('remote')) jobType = 'Remote';
-  else if (jt.includes('hybrid')) jobType = 'Hybrid';
-  else if (location) jobType = 'Onsite';
-
-  // Salary
-  let salaryRange = null;
-  const salaryMatch = rawText.match(/\$[\d,]+(?:K|k)?(?:\s*[-–—]\s*\$[\d,]+(?:K|k)?)?(?:\s*(?:per year|\/yr|annually|\/hour|\/hr))?/);
-  if (salaryMatch) salaryRange = salaryMatch[0];
+  // Fallback: raw text for description
+  if (!description && rawText) {
+    const lines = rawText.split('\n').map(l => l.trim()).filter(Boolean);
+    description = lines.slice(2).join('\n').trim();
+  }
 
   return {
     title: title || '',
