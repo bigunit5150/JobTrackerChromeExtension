@@ -4,7 +4,7 @@ One-click Chrome extension that saves job postings to your Notion database.
 
 ## Quick Start
 
-1. [Duplicate the Notion template](#) <!-- placeholder -->
+1. [Duplicate the Notion template](https://ribbon-punishment-423.notion.site/Job-Search-Dashboard-32b037c8790b80f1a3e8c5a95e140dff?source=copy_link)
 2. Create your Notion integration token
 3. [Install from Chrome Web Store](#) <!-- placeholder -->
 4. Configure the extension
