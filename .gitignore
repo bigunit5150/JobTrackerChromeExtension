@@ -15,5 +15,8 @@ Thumbs.db
 .env
 notes.md
 
+# Build output
+dist/
+
 # Build prompts
 job-tracker-claude-code-prompt.md

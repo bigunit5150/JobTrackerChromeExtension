@@ -1,9 +1,10 @@
 {
   "name": "job-tracker-extension",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Chrome extension to capture job postings to Notion",
   "type": "module",
   "scripts": {
+    "build": "cd .. && node scripts/build.js",
     "test": "node --test tests/parsers.test.js",
     "test:watch": "node --test --watch tests/parsers.test.js",
     "lint": "eslint .",

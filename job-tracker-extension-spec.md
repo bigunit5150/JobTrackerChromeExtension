@@ -416,8 +416,7 @@ POST https://api.notion.com/v1/databases/{databaseId}/query
 | Notion Database ID | `notionDatabaseId` | Text | Required |
 | Anthropic API Key | `claudeApiKey` | Password | Optional |
 
-Footer: `☕ If this saves you time during your search, a coffee is appreciated — [Buy Me a Coffee]`
-Link placeholder: `https://buymeacoffee.com` — replace with real URL before publishing.
+Footer: `☕ If this saves you time during your search, a coffee is appreciated — [Buy Me a Coffee](https://buymeacoffee.com/kjsmith5150)`
 
 ---
 

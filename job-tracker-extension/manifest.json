@@ -1,8 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Job Tracker",
-  "version": "1.0.0",
-  "description": "Capture job postings to Notion with one click",
+  "name": "Job Tracker for Notion",
+  "version": "1.1.0",
+  "description": "Capture job postings to your Notion database in one click. Requires your own Notion integration token.",
+  "minimum_chrome_version": "116",
+  "homepage_url": "https://kssoftware.net/projects/job-tracker.html",
   "permissions": [
     "activeTab",
     "scripting",
