@@ -83,6 +83,11 @@ If you provide a Claude API key in Settings, the extension will use Claude to ex
 - **Icon doesn't change** — Reload the extension at `chrome://extensions`.
 - **Found a bug?** [Open an issue](https://github.com/bigunit5150/JobTrackerChromeExtension/issues)
 
+## License
+
+PolyForm Noncommercial License 1.0.0 — see `LICENSE` for details.
+Free for personal, educational, and noncommercial use.
+
 ---
 
 This tool is free and always will be. If it saves you time during your job search, a coffee is appreciated but never expected. [Buy Me a Coffee](https://buymeacoffee.com/kjsmith5150)
