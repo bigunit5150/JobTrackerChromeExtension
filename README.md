@@ -4,7 +4,7 @@ One-click Chrome extension that saves job postings to your Notion database.
 
 [Install from Chrome Web Store](https://chromewebstore.google.com/detail/ponffclikgodccpghpammcpjpjeojopj?utm_source=item-share-cb) · [Notion Template](https://ribbon-punishment-423.notion.site/Job-Search-Dashboard-32b037c8790b80f1a3e8c5a95e140dff) · [Buy Me a Coffee](https://buymeacoffee.com/kjsmith5150)
 
-**v1.1.0**
+**v1.1.1**
 
 ## Quick Start
 
