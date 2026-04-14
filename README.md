@@ -1,42 +1,28 @@
-# Job Tracker for Notion
+# CareerPilot — Job Tracker for Notion
 
-One-click Chrome extension that saves job postings to your Notion database.
+One-click Chrome extension that saves job postings to your Notion database. Part of the [CareerPilot](https://kssoftware.net/CareerCopilot/) AI career coaching platform.
 
-[Install from Chrome Web Store](https://chromewebstore.google.com/detail/ponffclikgodccpghpammcpjpjeojopj?utm_source=item-share-cb) · [Notion Template](https://ribbon-punishment-423.notion.site/Job-Search-Dashboard-32b037c8790b80f1a3e8c5a95e140dff) · [Buy Me a Coffee](https://buymeacoffee.com/kjsmith5150)
+[Install from Chrome Web Store](https://chromewebstore.google.com/detail/ponffclikgodccpghpammcpjpjeojopj?utm_source=item-share-cb) · [Notion Template](https://www.notion.so/342037c8790b819195a6f4aea08e8bb4) · [Buy Me a Coffee](https://buymeacoffee.com/kjsmith5150)
 
 **v1.1.1**
 
 ## Quick Start
 
-1. [Duplicate the Notion template](https://ribbon-punishment-423.notion.site/Job-Search-Dashboard-32b037c8790b80f1a3e8c5a95e140dff) — this gives you a **Job Search Dashboard** with a pre-configured **Job Tracker** table
+1. [Duplicate the CareerPilot Notion template](https://www.notion.so/342037c8790b819195a6f4aea08e8bb4) — this gives you a dashboard with all three databases (Job Tracker, Resume Repository, Interview Prep Hub) and pre-built views
 2. Create your Notion integration token
-3. [Install from Chrome Web Store](https://chromewebstore.google.com/detail/ponffclikgodccpghpammcpjpjeojopj?utm_source=item-share-cb)4. Configure the extension with your token and the **Job Tracker** table's database ID
+3. [Install from Chrome Web Store](https://chromewebstore.google.com/detail/ponffclikgodccpghpammcpjpjeojopj?utm_source=item-share-cb)
+4. Configure the extension with your token and the **Job Tracker** database ID
 
 ## Notion Setup
 
-1. [Duplicate the template](https://ribbon-punishment-423.notion.site/Job-Search-Dashboard-32b037c8790b80f1a3e8c5a95e140dff) to your Notion workspace.
+1. [Duplicate the CareerPilot template](https://www.notion.so/342037c8790b819195a6f4aea08e8bb4) to your Notion workspace.
 2. Go to [notion.so/my-integrations](https://www.notion.so/my-integrations) and create a new integration.
 3. Copy the **Internal Integration Secret** (starts with `secret_` or `ntn_`).
 4. Open the **Job Tracker** table in the dashboard (click into it so it opens as a full-page database).
 5. Click **...** (top right) > **Connections** > add your integration.
 6. Copy the **Database ID** — open the table as a full page, then grab the 32-character hex string from the URL before the `?v=` parameter.
 
-   The table includes these properties:
-
-   | Property     | Type   |
-   |--------------|--------|
-   | Role Title   | Title  |
-   | Company      | Text   |
-   | Job URL      | URL    |
-   | Location     | Text   |
-   | Job Type     | Select |
-   | Salary Range | Text   |
-   | ATS Source   | Text   |
-   | Status       | Select |
-   | Date Added   | Date   |
-   | Date Applied | Date   |
-   | Raw JD       | Text   |
-   | Notes        | Text   |
+For the full setup guide, see [kssoftware.net/CareerCopilot](https://kssoftware.net/CareerCopilot/how-it-works.html).
 
 ## Configuration
 
@@ -78,7 +64,7 @@ If you provide a Claude API key in Settings, the extension will use Claude to ex
 - **"Notion credentials not configured"** — Open Settings and enter your token and database ID.
 - **"API token is invalid" (401)** — Your Notion token is wrong or expired. Create a new one at [notion.so/my-integrations](https://www.notion.so/my-integrations).
 - **"Database not found" (404)** — The database ID is wrong, or you haven't connected the integration to the database (Notion > ... > Connections).
-- **"Property does not exist" (400)** — Your database columns don't match the expected schema. Check the Notion Setup section above.
+- **"Property does not exist" (400)** — Your database columns don't match the expected schema. Duplicate the [CareerPilot template](https://www.notion.so/342037c8790b819195a6f4aea08e8bb4) to get the correct schema.
 - **"Duplicate" error** — A job with the same title and company already exists in your database.
 - **Icon doesn't change** — Reload the extension at `chrome://extensions`.
 - **Found a bug?** [Open an issue](https://github.com/bigunit5150/JobTrackerChromeExtension/issues)
