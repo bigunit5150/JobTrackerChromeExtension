@@ -8,10 +8,10 @@ One-click Chrome extension that saves job postings to your Notion database. Part
 
 ## Quick Start
 
-1. [Duplicate the CareerPilot Notion template](https://www.notion.so/342037c8790b819195a6f4aea08e8bb4) — this gives you a dashboard with all three databases (Job Tracker, Resume Repository, Interview Prep Hub) and pre-built views
-2. Create your Notion integration token
-3. [Install from Chrome Web Store](https://chromewebstore.google.com/detail/ponffclikgodccpghpammcpjpjeojopj?utm_source=item-share-cb)
-4. Configure the extension with your token and the **Job Tracker** database ID
+1. Duplicate the CareerPilot Notion template: https://www.notion.so/342037c8790b819195a6f4aea08e8bb4
+2. Open your duplicated Job Tracker database in Notion and copy the database ID from the URL
+3. Install the extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/ponffclikgodccpghpammcpjpjeojopj?utm_source=item-share-cb)
+4. Open the extension options page and paste your database ID and Notion integration token
 
 ## Notion Setup
 

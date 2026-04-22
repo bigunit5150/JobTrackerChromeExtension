@@ -2,7 +2,7 @@ const KEYS = ['notionToken', 'notionDatabaseId', 'claudeApiKey'];
 
 // Populate fields from storage on load
 chrome.storage.sync.get(KEYS, (stored) => {
-  KEYS.forEach(key => {
+  KEYS.forEach((key) => {
     const el = document.getElementById(key);
     if (el && stored[key]) el.value = stored[key];
   });
@@ -11,7 +11,7 @@ chrome.storage.sync.get(KEYS, (stored) => {
 // Save on button click
 document.getElementById('saveBtn').addEventListener('click', () => {
   const values = {};
-  KEYS.forEach(key => {
+  KEYS.forEach((key) => {
     const el = document.getElementById(key);
     if (el) values[key] = el.value.trim();
   });
@@ -41,7 +41,8 @@ document.getElementById('testBtn').addEventListener('click', async () => {
   }
   if (!dbId) {
     testStatus.className = 'err';
-    testStatus.textContent = 'Enter a Database ID first.';
+    testStatus.textContent =
+      'Database ID required. Get yours by duplicating the CareerPilot template: kssoftware.net/job-search-ai';
     return;
   }
 
@@ -51,7 +52,7 @@ document.getElementById('testBtn').addEventListener('click', async () => {
   try {
     const res = await fetch(`https://api.notion.com/v1/databases/${dbId}`, {
       headers: {
-        'Authorization': `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         'Notion-Version': '2022-06-28',
       },
     });
@@ -67,7 +68,8 @@ document.getElementById('testBtn').addEventListener('click', async () => {
       testStatus.textContent = 'Invalid token.';
     } else if (res.status === 404) {
       testStatus.className = 'err';
-      testStatus.textContent = 'Database not found — check the ID and make sure the integration is connected to it.';
+      testStatus.textContent =
+        'Database not found — check the ID and make sure the integration is connected to it.';
     } else {
       testStatus.className = 'err';
       testStatus.textContent = `Error ${res.status}: ${data.message || 'Unknown error'}`;
